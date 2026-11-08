@@ -47,6 +47,27 @@ SOURCES = [
      "unique": "Cloud cognitive problem solver with secure quantum logic (1.9K pulls, 2 stars)"},
     {"name": "Fing - Network Tools (Internet tab)", "kind": "app", "hub": "network",
      "unique": "ISP internet profile (public IP, hostname/PTR, location, timezone), trend cards, user rating, 24/7 monitoring seat - owner's real profile stays in private/, never in the repo"},
+    # Batch 4 - Darion's own project tarballs (v1.3.0, audited from source)
+    {"name": "ML-x 0.1.0 (tarball)", "kind": "own-tarball", "hub": "learn",
+     "unique": "Full-stack ML template (Next.js + FastAPI, PyTorch/TF/XGBoost/sklearn) - seat: honest stdlib ML pipeline with real accuracy metric"},
+    {"name": "slm 0.1.0 (tarball)", "kind": "own-tarball", "hub": "netlab",
+     "unique": "Small Language Model Narrower: slm_filter pipeline - seat: sentence-rarity narrowing + bigram SLM"},
+    {"name": "Deconstruction 0.1.0 (tarball)", "kind": "own-tarball", "hub": "engines",
+     "unique": "The fuller Deconstruction source: ingest -> fact_snapshot -> pruner -> amplifier -> memory_ml (upgrades the image seat, not a duplicate)"},
+    {"name": "G-C-64-TPUs 0.1.0 (tarball)", "kind": "own-tarball", "hub": "engines",
+     "unique": "64-TPU cluster design (Rust, 142 files) - seat: round-robin cluster scheduler, labelled simulation"},
+    {"name": "S3lf-c0n8ci0us 0.1.0 (tarball)", "kind": "own-tarball", "hub": "engines",
+     "unique": "Auto-cognitive reasoning surface (memory_manager, master_controller, autonomous_nav, biological_bridge) - seat: state snapshot, no consciousness claimed"},
+    {"name": "malware-sandbox-suite 0.1.0 (tarball)", "kind": "own-tarball", "hub": "shield",
+     "unique": "Sandbox suite (100 files: analyzer, api_gateway, cluster, audit) - seat: static triage chamber that NEVER executes samples"},
+    {"name": "CyberSec-Directory 0.1.0 (tarball)", "kind": "own-tarball", "hub": "learn",
+     "unique": "Delhi-NCR cyber training institute directory + 7 domain-check scripts (SSL, DMARC, DNSSEC, security.txt, expiry, IPv6, alive)"},
+    {"name": "Globe-Data-Visualizer 0.2.0 (tarball)", "kind": "own-tarball", "hub": "network",
+     "unique": "Globe data visualisation - seat: quadrant aggregation of geo data points (rendering stays the project's frontend)"},
+    {"name": "Ppls-voice-recognition-speaker 0.1.0 (tarball)", "kind": "own-tarball", "hub": "engines",
+     "unique": "Speaker-recognition ecosystem (ECAPA embeddings, C++ vector matching, Monad anchoring) - seat: cosine matching on supplied abstract vectors only, no audio, no identification"},
+    {"name": "LLM-x 0.1.5 (tarball)", "kind": "own-tarball", "hub": "netlab",
+     "unique": "Package form of the LLM-x architecture (34 files) - same family as LLM-X-NetLab repo, deduped into the one NetLab seat"},
     # Batch 3 - Darion's own repo, merged in full
     {"name": "credkellar/LLM-X-NetLab", "kind": "own-repo", "hub": "netlab",
      "unique": "LLM-x poster as code: RAG tutor over 21 networking notes, subnet/topology/layer/device engines, IP hopper-tracker-mapper START/MIDDLE/END + beyond-END walker, live sockets, Earth KML + Flow seats"},
@@ -76,6 +97,10 @@ DEDUPE = [
      "ONE curriculum: Kali course structure + HackerX bite-size practical modules kept from both"),
     ("exam prep", ["Pocket Prep IT & Cybersecurity", "CompTIA Security+ Exam Prep"],
      "ONE exam engine: 27-cert catalog + SY0-701 deep track (5 domains, study-by-topic) kept from both"),
+    ("LLM-x twice", ["credkellar/LLM-X-NetLab", "LLM-x 0.1.5 (tarball)"],
+     "ONE NetLab seat: the repo build is canonical; the tarball's package structure is recorded, not duplicated"),
+    ("deconstruction twice", ["credkellar/deconstruction", "Deconstruction 0.1.0 (tarball)"],
+     "ONE engine: the tarball's 5-stage pipeline (ingest/fact_snapshot/pruner/amplifier/memory_ml) upgrades the image seat"),
 ]
 
 
@@ -90,5 +115,6 @@ def counts():
     apps = sum(1 for s in SOURCES if s["kind"] == "app")
     own = sum(1 for s in SOURCES if s["kind"] == "own-image")
     repos = sum(1 for s in SOURCES if s["kind"] == "own-repo")
+    tarballs = sum(1 for s in SOURCES if s["kind"] == "own-tarball")
     return {"sources": len(SOURCES), "apps": apps, "own_images": own,
-            "own_repos": repos, "hubs": len(HUBS)}
+            "own_repos": repos, "own_tarballs": tarballs, "hubs": len(HUBS)}

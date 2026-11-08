@@ -19,8 +19,29 @@ from netx.towers import generations, nearest
 
 def test_catalog_counts():
     c = counts()
-    assert c == {"sources": 22, "apps": 18, "own_images": 3, "own_repos": 1, "hubs": 7}
-    assert len(DEDUPE) == 5 and len(HUBS) == 7
+    assert c == {"sources": 32, "apps": 18, "own_images": 3, "own_repos": 1,
+                 "own_tarballs": 10, "hubs": 7}
+    assert len(DEDUPE) == 7 and len(HUBS) == 7
+
+
+def test_packages_seats():
+    from netx.packages import (SEATS, decon_pipeline, globe_aggregate, mlx_pipeline,
+                               s3lf_snapshot, sandbox_triage, slm_bigram, slm_narrow,
+                               tpu_schedule, voice_match)
+    assert len(SEATS) == 10
+    r = mlx_pipeline([[0, 0], [0, 1], [9, 9], [8, 9], [0, 0], [9, 9]],
+                     ["a", "a", "b", "b", "a", "b"])
+    assert r["accuracy"] == 1.0
+    assert slm_narrow("One fish swims. Two fish swim.")["narrowed_from"] == 2
+    assert slm_bigram("the cat sat the cat ran", "the", 3) == "the cat sat"
+    d = decon_pipeline("just a very messy basically raw idea")
+    assert d["stages"] == ["ingest", "fact_snapshot", "pruner", "amplifier", "memory_ml"]
+    assert tpu_schedule(["j"] * 65)["busiest_chip_load"] == 2
+    assert s3lf_snapshot([{"name": "m1", "weight": 5}], "focus")["top_memory"] == "m1"
+    t = sandbox_triage([{"name": "x.ps1"}])
+    assert t["executed"] == 0 and t["files"][0]["risk"] == "held-high"
+    assert globe_aggregate([("A", 1, 1, 3)])["quadrants"]["NE"]["total_value"] == 3
+    assert voice_match({"a": [1, 0]}, [1, 0])["best_label"] == "a"
 
 
 def test_internet_profile_and_runtime():
@@ -30,7 +51,7 @@ def test_internet_profile_and_runtime():
     assert real.has_ptr is True and real.is_public is True
     from netx.runtime import run_all, snapshot
     ra = run_all(poll_ms=20)
-    assert ra["jobs"] == 9 and ra["wall_ms"] < ra["sum_if_serial_ms"]
+    assert ra["jobs"] == 10 and ra["wall_ms"] < ra["sum_if_serial_ms"]
     snapshot()
     _, hit = snapshot()
     assert hit is True
@@ -118,4 +139,4 @@ def test_council_and_gates():
     c = council("deploy", severity="critical")
     assert c["verdict"] == "HOLD" and c["advisor"]["authority"] == "none"
     assert c["flow"]["rendered"] is False
-    assert len(HOLD_GATES) == 13
+    assert len(HOLD_GATES) == 15

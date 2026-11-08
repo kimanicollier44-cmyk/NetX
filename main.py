@@ -17,6 +17,9 @@ from netx.netlab import KB, subnet_calc, topology_spof, track, tutor
 from netx.network import Device, network_map, port_scan, summarize
 from netx.internet import SAMPLE, load_profile, profile_check
 from netx.news import deduped, rank
+from netx.packages import (decon_pipeline, directory_search, globe_aggregate,
+                           mlx_pipeline, sandbox_triage, slm_narrow, tpu_schedule,
+                           voice_match)
 from netx.runtime import run_all, snapshot
 from netx.shield import smart_scan
 from netx.towers import generations, nearest
@@ -34,10 +37,10 @@ def run_checks():
     def ck(name, ok):
         checks.append((name, bool(ok)))
     c = counts()
-    ck("22 sources catalogued (18 apps + 3 own images + LLM-X-NetLab)",
-       c["sources"] == 22 and c["apps"] == 18 and c["own_images"] == 3 and c["own_repos"] == 1)
+    ck("32 sources catalogued (18 apps + 3 own images + LLM-X-NetLab + 10 tarballs)",
+       c["sources"] == 32 and c["apps"] == 18 and c["own_images"] == 3 and c["own_repos"] == 1 and c["own_tarballs"] == 10)
     ck("7 hubs", c["hubs"] == 7)
-    ck("5 dedupe groups merged once", len(DEDUPE) == 5)
+    ck("7 dedupe groups merged once", len(DEDUPE) == 7)
     ck("every source lands in a real hub", all(s["hub"] in HUBS for s in SOURCES))
     fleet = AgentFleet(); fleet.new_task("Polish the checkout experience")
     ck("agent board counts Working=1", fleet.board()["Working"] == 1)
@@ -80,13 +83,27 @@ def run_checks():
        co["decider"]["role"] == "DECIDER" and co["advisor"]["authority"] == "none")
     ck("internet seat: sample profile has no PTR (hostname = IP), trends carried",
        profile_check(SAMPLE)["ptr_published"] is False and SAMPLE.trends["performance"] == "Declining fast")
+    mlx = mlx_pipeline([[0, 0], [0, 1], [1, 0], [9, 9], [9, 8], [8, 9], [0, 0], [9, 9]],
+                       ["a", "a", "a", "b", "b", "b", "a", "b"])
+    ck("ML-x seat: pipeline trains and scores accuracy 1.0 on separable data", mlx["accuracy"] == 1.0)
+    ck("slm seat narrows 4 sentences to 2", slm_narrow("Cats sleep all day. Quantum flux resonates deeply. Dogs bark. Zebras graze quietly.")["kept_count"] == 2)
+    ck("decon tarball seat runs the real 5 stages", decon_pipeline("Basically, just clean this core idea.")["stages"][0] == "ingest")
+    ck("TPU seat: 64-chip simulation, 128 jobs -> busiest load 2",
+       tpu_schedule([f"job{i}" for i in range(128)])["busiest_chip_load"] == 2)
+    tri = sandbox_triage([{"name": "invoice.pdf", "size": 10}, {"name": "update.exe", "size": 99}])
+    ck("sandbox chamber triages, executes nothing", tri["executed"] == 0 and tri["files"][1]["risk"] == "held-high")
+    ck("directory seat finds VAPT institutes", len(directory_search("VAPT")) == 1)
+    ck("globe seat aggregates quadrants, renders nothing",
+       globe_aggregate([("A", 10, 20, 5), ("B", -5, -30, 7)])["points"] == 2)
+    vm = voice_match({"speaker-a": [1.0, 0.0], "speaker-b": [0.0, 1.0]}, [0.99, 0.01])
+    ck("voice seat matches supplied vectors only, no audio", vm["match"] is True and vm["audio_processed"] is False)
     ra = run_all(poll_ms=20)
-    ck("runtime: all 9 jobs (7 hubs + internet + council) run at the same time",
-       ra["jobs"] == 9 and ra["wall_ms"] < ra["sum_if_serial_ms"])
+    ck("runtime: all 10 jobs (7 hubs + internet + packages + council) run at the same time",
+       ra["jobs"] == 10 and ra["wall_ms"] < ra["sum_if_serial_ms"])
     snapshot()  # prime the cache with the parallel run
     snap, hit = snapshot()
-    ck("snapshot cache serves repeat reads (zero-latency read path)", hit is True and snap["jobs"] == 9)
-    ck("13 HOLD gates", len(HOLD_GATES) == 13)
+    ck("snapshot cache serves repeat reads (zero-latency read path)", hit is True and snap["jobs"] == 10)
+    ck("15 HOLD gates", len(HOLD_GATES) == 15)
     failed = [n for n, ok in checks if not ok]
     for n, ok in checks:
         print(f"{'PASS' if ok else 'FAIL'}  {n}")
@@ -144,6 +161,11 @@ def main(argv):
         prof, src = load_profile()
         out = profile_check(prof); out["profile_source"] = src
         print(json.dumps(out, indent=2))
+    elif cmd == "packages":
+        print("ML-x:", mlx_pipeline([[0, 0], [0, 1], [9, 9], [8, 9], [0, 0], [9, 9]],
+                                   ["a", "a", "b", "b", "a", "b"]))
+        print("Sandbox:", sandbox_triage([{"name": "sample.exe", "size": 1}]))
+        print("TPU:", tpu_schedule(["train", "infer", "eval"])["jobs"], "jobs on 64 simulated chips")
     elif cmd == "run-all":
         print(json.dumps(run_all(), indent=2))
     elif cmd == "council":

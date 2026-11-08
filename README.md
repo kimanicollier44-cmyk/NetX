@@ -6,7 +6,7 @@
 ![Dependencies](https://img.shields.io/badge/Dependencies-Zero-00C853)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-![Version](https://img.shields.io/badge/Version-1.2.0-blue)
+![Version](https://img.shields.io/badge/Version-1.3.0-blue)
 
 ---
 
@@ -25,11 +25,11 @@
 
 ## 🏷️ Tech Stack Badges
 
-![Sources](https://img.shields.io/badge/Sources_Merged-22-purple)
+![Sources](https://img.shields.io/badge/Sources_Merged-32-purple)
 ![Hubs](https://img.shields.io/badge/Hubs-7-orange)
-![HOLD Gates](https://img.shields.io/badge/HOLD_Gates-13-red)
-![Tests](https://img.shields.io/badge/Tests-13_Passed-brightgreen)
-![Checks](https://img.shields.io/badge/Checks-33%2F33-brightgreen)
+![HOLD Gates](https://img.shields.io/badge/HOLD_Gates-15-red)
+![Tests](https://img.shields.io/badge/Tests-14_Passed-brightgreen)
+![Checks](https://img.shields.io/badge/Checks-41%2F41-brightgreen)
 ![Council](https://img.shields.io/badge/Council-Carbon_4_DECIDE-blueviolet)
 ![Advisor](https://img.shields.io/badge/Advisor-Muse_AI-ff69b4)
 ![Runtime](https://img.shields.io/badge/Runtime-Parallel_All_Hubs-00bcd4)
@@ -55,7 +55,7 @@
 ### 🔧 DevOps & Build Tools
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
 ![Docker Publish](https://img.shields.io/badge/Docker_Publish-Hub-2496ED?logo=docker&logoColor=white)
-![pytest](https://img.shields.io/badge/Tests-13_Passed-brightgreen)
+![pytest](https://img.shields.io/badge/Tests-14_Passed-brightgreen)
 
 ### ☁️ Cloud Providers
 🚫 None required — NetX runs fully offline/local. Optional seats only: Gemini Carbon 4 / Muse names are used for the council *model labels*; no key is needed for the offline council in this repo.
@@ -101,7 +101,7 @@
 
 ```mermaid
 flowchart TD
-    A[📱 22 sources: 18 apps + 3 Hub images + LLM-X-NetLab] --> B{🔀 NetX dedupe: 5 groups merged once}
+    A[📱 32 sources: 18 apps + 3 Hub images + LLM-X-NetLab + 10 tarballs] --> B{🔀 NetX dedupe: 5 groups merged once}
     B --> C[🧑‍💻 Code Studio]
     B --> D[🌐 Network Atlas + 📶 Internet + 📡 Towers]
     B --> E[🛡️ Shield]
@@ -200,6 +200,8 @@ flowchart TD
 
 ### 🎛️ `main.py` — the one interface
 
+![icon-main](assets/icon-main.webp)
+
 ```mermaid
 flowchart TD
     A[python main.py command] --> B{which command?}
@@ -213,19 +215,24 @@ flowchart TD
     B --> J[hold-demo 🔒 exit 2]
 ```
 
-### 📚 `netx/catalog.py` — the 22-source receipt book
+### 📚 `netx/catalog.py` — the 32-source receipt book
+
+![icon-catalog](assets/icon-catalog.webp)
 
 ```mermaid
 flowchart LR
     A[18 apps 📱] --> D[catalog.py]
+    A2[10 own tarballs 🗜️] --> D
     B[3 own Docker images 🐳] --> D
     C[LLM-X-NetLab repo 🔬] --> D
     D --> E[7 hubs]
     D --> F[5 dedupe groups]
-    D --> G[counts check: 22 sources]
+    D --> G[counts check: 32 sources]
 ```
 
 ### 🧑‍💻 `netx/agents.py` — Kilo agent board
+
+![icon-agents](assets/icon-agents.webp)
 
 ```mermaid
 flowchart LR
@@ -242,6 +249,8 @@ flowchart LR
 
 ### ✏️ `netx/editor.py` — QuickCode editor + Code runner
 
+![icon-editor](assets/icon-editor.webp)
+
 ```mermaid
 flowchart TD
     A[Document: title + code + extension] --> B[language from extension: 12 languages]
@@ -253,6 +262,8 @@ flowchart TD
 ```
 
 ### 🌐 `netx/network.py` — Network Atlas inventory
+
+![icon-network](assets/icon-network.webp)
 
 ```mermaid
 flowchart TD
@@ -267,6 +278,8 @@ flowchart TD
 
 ### 📡 `netx/towers.py` — Cellular Tower finder
 
+![icon-towers](assets/icon-towers.webp)
+
 ```mermaid
 flowchart LR
     A[caller-supplied coordinates] --> B[haversine distance to each tower]
@@ -276,6 +289,8 @@ flowchart LR
 ```
 
 ### 📶 `netx/internet.py` — Fing Internet seat
+
+![icon-internet](assets/icon-internet.webp)
 
 ```mermaid
 flowchart TD
@@ -288,6 +303,8 @@ flowchart TD
 ```
 
 ### 🛡️ `netx/shield.py` — Norton Smart Scan seat
+
+![icon-shield](assets/icon-shield.webp)
 
 ```mermaid
 flowchart LR
@@ -303,6 +320,8 @@ flowchart LR
 
 ### 📰 `netx/news.py` — Threat News Wire
 
+![icon-news](assets/icon-news.webp)
+
 ```mermaid
 flowchart TD
     A[stories from both news apps] --> B[dedupe by normalised title]
@@ -316,6 +335,8 @@ flowchart TD
 
 ### 🎓 `netx/learn.py` — Learn Hub
 
+![icon-learn](assets/icon-learn.webp)
+
 ```mermaid
 flowchart TD
     A[Learn Hub] --> B[Track A: Kali courses + 12 tools + HackerX modules]
@@ -326,6 +347,8 @@ flowchart TD
 ```
 
 ### 🔬 `netx/netlab.py` — LLM-X-NetLab seat
+
+![icon-netlab](assets/icon-netlab.webp)
 
 ```mermaid
 flowchart TD
@@ -340,6 +363,8 @@ flowchart TD
 
 ### ⚙️ `netx/engines.py` — his 3 Docker images as engines
 
+![icon-engines](assets/icon-engines.webp)
+
 ```mermaid
 flowchart TD
     A[events] --> B[A-C-D detector: ports ≥10 · DoS ≥100 · flood ≥50/min]
@@ -349,6 +374,8 @@ flowchart TD
 ```
 
 ### 🧠 `netx/brains.py` — the council
+
+![icon-brains](assets/icon-brains.webp)
 
 ```mermaid
 flowchart LR
@@ -362,6 +389,8 @@ flowchart LR
 
 ### 🔒 `netx/gates.py` — HOLD gates
 
+![icon-gates](assets/icon-gates.webp)
+
 ```mermaid
 flowchart TD
     A[any risky action] --> B{which gate?}
@@ -372,13 +401,34 @@ flowchart TD
 
 ### ⚡ `netx/runtime.py` — all running at the same time
 
+![icon-runtime](assets/icon-runtime.webp)
+
 ```mermaid
 flowchart TD
-    A[run-all] --> B[ThreadPool: 9 workers]
-    B --> C[code] & D[network] & E[shield] & F[news] & G[learn] & H[engines] & I[netlab] & J[internet] & K[council]
-    C & D & E & F & G & H & I & J & K --> L[wall time ≈ slowest hub]
+    A[run-all] --> B[ThreadPool: 10 workers]
+    B --> C[code] & D[network] & E[shield] & F[news] & G[learn] & H[engines] & I[netlab] & J[internet] & K[council] & P[packages]
+    C & D & E & F & G & H & I & J & K & P --> L[wall time ≈ slowest hub]
     L --> M[report: wall vs serial sum vs speedup]
     L --> N[cached snapshot → repeat reads ⚡ zero-latency path]
+```
+
+### 📦 `netx/packages.py` — the 10 tarball seats
+
+![icon-packages](assets/icon-packages.webp)
+
+```mermaid
+flowchart TD
+    A[10 tarballs 🗜️ extracted + audited] --> B{seat by project}
+    B --> C[ML-x: train → infer → accuracy]
+    B --> D[slm: narrow + bigram]
+    B --> E[Deconstruction: ingest → snapshot → prune → amplify → memory]
+    B --> F[G-C-64-TPUs: 64-chip scheduler - simulation]
+    B --> G[S3lf: state snapshot]
+    B --> H[sandbox suite: triage - NEVER executes]
+    B --> I[CyberSec-Directory: institutes + domain checks]
+    B --> J[Globe: quadrant aggregation]
+    B --> K[Ppls voice: cosine on supplied vectors]
+    B --> L[LLM-x 0.1.5: deduped into NetLab]
 ```
 
 ---
@@ -409,10 +459,20 @@ flowchart TD
 └── 📖 README.md
 ```
 
-## 🔒 HOLD gates (13)
+## 🔒 HOLD gates (15)
 
 🚫 Live exploitation · 🚫 scanning other people's networks · 🚫 untrusted code outside the timed sandbox · 🚫 agents without a human steering · 🚫 router changes · 🚫 VPN traffic routing · 🚫 tower tracking · 🚫 calling a camera flag "proof" · 🚫 sample news published as fact · 🚫 fetching live exam content · 🚫 third-party geo-lookup · 🚫 pushing without a named target · 🚫 **the owner's private home profile — never committed, ever**
 
 ---
 
-*Built for Darion Kellar · NetX v1.2.0 · pytest 13 passed · checks 33/33 · hold-demo exit 2*
+## 📦 v1.3.0 — Package seats (10 of Darion's own tarballs)
+
+🗜️ Extracted and audited from source in `~/workspace/netx-sources/`, each merged as a real seat in `netx/packages.py`: **ML-x** (stdlib ML pipeline, real accuracy) · **slm** (sentence narrowing + bigram SLM) · **Deconstruction tarball** (the real 5-stage pipeline — upgrades the image seat, deduped) · **G-C-64-TPUs** (64-chip scheduler, labelled simulation) · **S3lf-c0n8ci0us** (state snapshot, no consciousness claimed) · **malware-sandbox-suite** (triage chamber — **never executes**) · **CyberSec-Directory** (institute directory + 7 domain checks) · **Globe-Data-Visualizer** (quadrant aggregation) · **Ppls voice** (cosine match on supplied vectors — no audio, no identification) · **LLM-x 0.1.5** (deduped into the one NetLab seat). Sources: **32** · Dedupe groups: **7** · Runtime jobs: **10** (wall 32.73 ms vs 302.32 ms serial = **9.2×**).
+
+## 🎨 Script pictures
+
+🖼️ Every script has its own picture in `assets/` (dark navy, cyan + yellow neon set): `icon-main` (main.py) · `icon-catalog` · `icon-agents` · `icon-editor` · `icon-network` · `icon-towers` · `icon-internet` · `icon-shield` · `icon-news` · `icon-learn` · `icon-netlab` · `icon-engines` · `icon-brains` · `icon-gates` · `icon-runtime` · `icon-packages`. Binary images cannot travel through the GitHub App — they are the owner's upload step, same as repo cover images.
+
+---
+
+*Built for Darion Kellar · NetX v1.3.0 · pytest 14 passed · checks 41/41 · hold-demo exit 2*

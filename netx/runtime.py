@@ -14,6 +14,7 @@ from .learn import QUESTIONS, quiz
 from .netlab import tutor
 from .network import Device, summarize
 from .news import rank
+from .packages import SEATS
 from .shield import smart_scan
 
 POLL_MS = 30  # simulated per-hub poll cycle, labelled - the hub work itself is real
@@ -39,6 +40,7 @@ def _hub_work():
         "engines": lambda: detect([]),
         "netlab": lambda: tutor("what is dns")[0]["title"],
         "internet": lambda: profile_check(SAMPLE)["ptr_published"],
+        "packages": lambda: len(SEATS),
         "council": lambda: council("run all hubs at once")["verdict"],
     }
 

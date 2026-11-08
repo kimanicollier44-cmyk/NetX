@@ -14,6 +14,8 @@ HOLD_GATES = [
     "geo-lookup: no third-party geolocation of IPs the owner does not control",
     "push-publish: NetX ships locally until Darion names a repo and says push",
     "home-profile-privacy: the owner's real ISP / public-IP / BSSID profile lives in private/ (gitignored) - it is never committed, pushed or published",
+    "sandbox-never-executes: the sandbox-suite seat triages file metadata only - samples are never opened, run or detonated",
+    "voice-no-identification: the Ppls seat matches abstract vectors the caller supplies - no audio capture, no identifying real people",
 ]
 
 
