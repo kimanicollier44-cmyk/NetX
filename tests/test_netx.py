@@ -19,8 +19,8 @@ from netx.towers import generations, nearest
 
 def test_catalog_counts():
     c = counts()
-    assert c == {"sources": 32, "apps": 18, "own_images": 3, "own_repos": 1,
-                 "own_tarballs": 10, "hubs": 7}
+    assert c == {"sources": 33, "apps": 18, "own_images": 3, "own_repos": 1,
+                 "own_tarballs": 10, "articles": 1, "hubs": 7}
     assert len(DEDUPE) == 7 and len(HUBS) == 7
 
 
@@ -51,7 +51,7 @@ def test_internet_profile_and_runtime():
     assert real.has_ptr is True and real.is_public is True
     from netx.runtime import run_all, snapshot
     ra = run_all(poll_ms=20)
-    assert ra["jobs"] == 10 and ra["wall_ms"] < ra["sum_if_serial_ms"]
+    assert ra["jobs"] == 11 and ra["wall_ms"] < ra["sum_if_serial_ms"]
     snapshot()
     _, hit = snapshot()
     assert hit is True
@@ -139,4 +139,21 @@ def test_council_and_gates():
     c = council("deploy", severity="critical")
     assert c["verdict"] == "HOLD" and c["advisor"]["authority"] == "none"
     assert c["flow"]["rendered"] is False
-    assert len(HOLD_GATES) == 15
+    assert len(HOLD_GATES) == 16
+
+
+def test_geo_seat():
+    from netx.geo import (demo_pairs, distance_url, get_dist_dur,
+                          get_lati_longi, parse_distance, parse_geocode,
+                          DISTANCE_SAMPLE, GEOCODE_SAMPLE, static_map_url)
+    assert parse_geocode(GEOCODE_SAMPLE) == (50.08138847866026, 14.425403029872987)
+    d = parse_distance(DISTANCE_SAMPLE)
+    assert d["distance_text"] == "6.7 km" and d["duration_text"] == "23 mins"
+    assert d["distance_m"] == 6700 and d["duration_s"] == 1380
+    assert parse_geocode({"status": "ZERO_RESULTS", "results": []}) is None
+    assert "origins=A" in distance_url("A", "B", "K")
+    assert get_lati_longi("X", api_key="")["status"] == "HOLD"
+    assert get_dist_dur("A", "B", api_key="")["offline_demo"]["distance_text"] == "6.7 km"
+    assert static_map_url(50.08, 14.42, "K")["fetched"] is False
+    gp = demo_pairs()
+    assert gp["distance"] == "6.7 km" and gp["static_map"] is False

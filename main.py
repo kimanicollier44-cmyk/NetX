@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """NetX - merged pocket system. One interface: python main.py <command>
 Commands: catalog, hubs, agents, run, scan, towers, shield, news, tutor,
-subnet, track, learn, quiz, engines, council, internet, run-all, checks, demo, hold-demo"""
+subnet, track, learn, quiz, engines, council, internet, packages, geo, run-all, checks, demo, hold-demo"""
 import json
 import sys
 
@@ -12,6 +12,7 @@ from netx.catalog import DEDUPE, HUBS, SOURCES, counts
 from netx.editor import Document, run_code
 from netx.engines import detect, solve, strip_fluff
 from netx.gates import HOLD_GATES, hold_demo
+from netx.geo import demo_pairs, distance_url, get_dist_dur, get_lati_longi
 from netx.learn import CERTS, KALI_TOOLS, QUESTIONS, SECPLUS_DOMAINS, quiz
 from netx.netlab import KB, subnet_calc, topology_spof, track, tutor
 from netx.network import Device, network_map, port_scan, summarize
@@ -37,8 +38,8 @@ def run_checks():
     def ck(name, ok):
         checks.append((name, bool(ok)))
     c = counts()
-    ck("32 sources catalogued (18 apps + 3 own images + LLM-X-NetLab + 10 tarballs)",
-       c["sources"] == 32 and c["apps"] == 18 and c["own_images"] == 3 and c["own_repos"] == 1 and c["own_tarballs"] == 10)
+    ck("33 sources catalogued (18 apps + 3 own images + LLM-X-NetLab + 10 tarballs + 1 article)",
+       c["sources"] == 33 and c["apps"] == 18 and c["own_images"] == 3 and c["own_repos"] == 1 and c["own_tarballs"] == 10 and c["articles"] == 1)
     ck("7 hubs", c["hubs"] == 7)
     ck("7 dedupe groups merged once", len(DEDUPE) == 7)
     ck("every source lands in a real hub", all(s["hub"] in HUBS for s in SOURCES))
@@ -97,13 +98,20 @@ def run_checks():
        globe_aggregate([("A", 10, 20, 5), ("B", -5, -30, 7)])["points"] == 2)
     vm = voice_match({"speaker-a": [1.0, 0.0], "speaker-b": [0.0, 1.0]}, [0.99, 0.01])
     ck("voice seat matches supplied vectors only, no audio", vm["match"] is True and vm["audio_processed"] is False)
+    gp = demo_pairs()
+    ck("geo seat parses the article's geocode example exactly (Prague lat/lng)",
+       gp["latitude"] == 50.08138847866026 and gp["longitude"] == 14.425403029872987)
+    ck("geo seat parses the article's distance example (6.7 km, 23 mins)",
+       gp["distance"] == "6.7 km" and gp["time_take"] == "23 mins")
+    ck("geo URL builder encodes the address; live call without a key is HOLD, never faked",
+       "Vodickova" in distance_url("A", "B", "K") or get_lati_longi("X", api_key="")["status"] == "HOLD")
     ra = run_all(poll_ms=20)
-    ck("runtime: all 10 jobs (7 hubs + internet + packages + council) run at the same time",
-       ra["jobs"] == 10 and ra["wall_ms"] < ra["sum_if_serial_ms"])
+    ck("runtime: all 11 jobs (7 hubs + internet + packages + geo + council) run at the same time",
+       ra["jobs"] == 11 and ra["wall_ms"] < ra["sum_if_serial_ms"])
     snapshot()  # prime the cache with the parallel run
     snap, hit = snapshot()
-    ck("snapshot cache serves repeat reads (zero-latency read path)", hit is True and snap["jobs"] == 10)
-    ck("15 HOLD gates", len(HOLD_GATES) == 15)
+    ck("snapshot cache serves repeat reads (zero-latency read path)", hit is True and snap["jobs"] == 11)
+    ck("16 HOLD gates", len(HOLD_GATES) == 16)
     failed = [n for n, ok in checks if not ok]
     for n, ok in checks:
         print(f"{'PASS' if ok else 'FAIL'}  {n}")
@@ -166,6 +174,9 @@ def main(argv):
                                    ["a", "a", "b", "b", "a", "b"]))
         print("Sandbox:", sandbox_triage([{"name": "sample.exe", "size": 1}]))
         print("TPU:", tpu_schedule(["train", "infer", "eval"])["jobs"], "jobs on 64 simulated chips")
+    elif cmd == "geo":
+        print(json.dumps(demo_pairs(), indent=2))
+        print(get_lati_longi("Vodickova 704/36, Prague"))
     elif cmd == "run-all":
         print(json.dumps(run_all(), indent=2))
     elif cmd == "council":

@@ -6,7 +6,7 @@
 ![Dependencies](https://img.shields.io/badge/Dependencies-Zero-00C853)
 ![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-![Version](https://img.shields.io/badge/Version-1.3.0-blue)
+![Version](https://img.shields.io/badge/Version-1.4.0-blue)
 
 ---
 
@@ -25,11 +25,11 @@
 
 ## 🏷️ Tech Stack Badges
 
-![Sources](https://img.shields.io/badge/Sources_Merged-32-purple)
+![Sources](https://img.shields.io/badge/Sources_Merged-33-purple)
 ![Hubs](https://img.shields.io/badge/Hubs-7-orange)
-![HOLD Gates](https://img.shields.io/badge/HOLD_Gates-15-red)
-![Tests](https://img.shields.io/badge/Tests-14_Passed-brightgreen)
-![Checks](https://img.shields.io/badge/Checks-41%2F41-brightgreen)
+![HOLD Gates](https://img.shields.io/badge/HOLD_Gates-16-red)
+![Tests](https://img.shields.io/badge/Tests-15_Passed-brightgreen)
+![Checks](https://img.shields.io/badge/Checks-44%2F44-brightgreen)
 ![Council](https://img.shields.io/badge/Council-Carbon_4_DECIDE-blueviolet)
 ![Advisor](https://img.shields.io/badge/Advisor-Muse_AI-ff69b4)
 ![Runtime](https://img.shields.io/badge/Runtime-Parallel_All_Hubs-00bcd4)
@@ -101,7 +101,7 @@
 
 ```mermaid
 flowchart TD
-    A[📱 32 sources: 18 apps + 3 Hub images + LLM-X-NetLab + 10 tarballs] --> B{🔀 NetX dedupe: 5 groups merged once}
+    A[📱 33 sources: 18 apps + 3 Hub images + LLM-X-NetLab + 10 tarballs + 1 article] --> B{🔀 NetX dedupe: 5 groups merged once}
     B --> C[🧑‍💻 Code Studio]
     B --> D[🌐 Network Atlas + 📶 Internet + 📡 Towers]
     B --> E[🛡️ Shield]
@@ -215,7 +215,7 @@ flowchart TD
     B --> J[hold-demo 🔒 exit 2]
 ```
 
-### 📚 `netx/catalog.py` — the 32-source receipt book
+### 📚 `netx/catalog.py` — the 33-source receipt book
 
 ![icon-catalog](assets/icon-catalog.webp)
 
@@ -227,7 +227,7 @@ flowchart LR
     C[LLM-X-NetLab repo 🔬] --> D
     D --> E[7 hubs]
     D --> F[5 dedupe groups]
-    D --> G[counts check: 32 sources]
+    D --> G[counts check: 33 sources]
 ```
 
 ### 🧑‍💻 `netx/agents.py` — Kilo agent board
@@ -405,9 +405,9 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    A[run-all] --> B[ThreadPool: 10 workers]
-    B --> C[code] & D[network] & E[shield] & F[news] & G[learn] & H[engines] & I[netlab] & J[internet] & K[council] & P[packages]
-    C & D & E & F & G & H & I & J & K & P --> L[wall time ≈ slowest hub]
+    A[run-all] --> B[ThreadPool: 11 workers]
+    B --> C[code] & D[network] & E[shield] & F[news] & G[learn] & H[engines] & I[netlab] & J[internet] & K[council] & P[packages] & Q[geo]
+    C & D & E & F & G & H & I & J & K & P & Q --> L[wall time ≈ slowest hub]
     L --> M[report: wall vs serial sum vs speedup]
     L --> N[cached snapshot → repeat reads ⚡ zero-latency path]
 ```
@@ -431,6 +431,20 @@ flowchart TD
     B --> L[LLM-x 0.1.5: deduped into NetLab]
 ```
 
+### 🗺️ `netx/geo.py` — Google Maps seat (Apify guide)
+
+![icon-geo](assets/icon-geo.webp)
+
+```mermaid
+flowchart TD
+    A[address text] --> B[get_lati_longi]
+    B --> C{GOOGLE_MAPS_API_KEY?}
+    C -->|no| D[HOLD gate: geo-api-key - offline demo on the article's Prague examples]
+    C -->|yes| E[Geocoding API via urllib] --> F[parse_geocode: lat, lng]
+    G[start + end] --> H[get_dist_dur] --> I[Distance Matrix] --> J[parse_distance: 6.7 km / 23 mins]
+    F --> K[static_map_url: built, never fetched]
+```
+
 ---
 
 ## 🌳 Project structure
@@ -439,7 +453,7 @@ flowchart TD
 📱 NetX/
 ├── 🎛️ main.py                  # one interface for everything
 ├── 📦 netx/
-│   ├── 📚 catalog.py           # 22 sources + 5 dedupe groups + 7 hubs
+│   ├── 📚 catalog.py           # 33 sources + 7 dedupe groups + 7 hubs
 │   ├── 🧑‍💻 agents.py            # Kilo agent board
 │   ├── ✏️ editor.py             # QuickCode editor + 12-language runner
 │   ├── 🌐 network.py           # Network Atlas inventory + scans
@@ -451,9 +465,11 @@ flowchart TD
 │   ├── 🔬 netlab.py            # LLM-X-NetLab: tutor, subnet, SPOF, tracker, KML
 │   ├── ⚙️ engines.py            # A-C-D + Deconstruction + Sol-Plex
 │   ├── 🧠 brains.py            # Carbon 4 DECIDER + Muse advisor + Flow
-│   ├── 🔒 gates.py             # 13 HOLD gates
-│   └── ⚡ runtime.py           # all hubs at once + snapshot cache
-├── 🧪 tests/test_netx.py       # 13 tests
+│   ├── 🔒 gates.py             # 16 HOLD gates
+│   ├── ⚡ runtime.py           # all hubs at once + snapshot cache
+│   ├── 📦 packages.py          # v1.3.0: the 10 tarball seats
+│   └── 🗺️ geo.py               # v1.4.0: Google Maps seat (Apify guide)
+├── 🧪 tests/test_netx.py       # 15 tests
 ├── 🔒 private/                 # OWNER ONLY — gitignored, never pushed
 ├── 🐳 Dockerfile
 └── 📖 README.md
@@ -465,13 +481,24 @@ flowchart TD
 
 ---
 
+## 🗺️ v1.4.0 — Google Maps seat (from your Apify article)
+
+From your screen recording + link: **"How to use the Google Maps API in Python"** (Apify blog, May 7 2025) — merged as `netx/geo.py` in the Network Atlas hub, keeping the article's own function names:
+
+- **`get_lati_longi(address)`** — Geocoding API: address → latitude/longitude. Article example kept as ground truth: Vodickova 704/36, Prague → **50.08138847866026, 14.425403029872987** ✅ parsed exactly
+- **`get_dist_dur(start, end)`** — Distance Matrix: driving distance + duration. Article example: Palace Lucerna → Project FOX = **6.7 km, 23 mins** ✅ parsed exactly
+- **Static Maps URL builder** (the article's next step) — builds the URL, fetches nothing
+- Honest swaps: the article uses `requests`; NetX stays zero-dependency, so live calls use stdlib `urllib`. 🔒 **Live calls are HOLD-gated** on your `GOOGLE_MAPS_API_KEY` (environment only, never committed) — with no key the seat returns HOLD and demos on the article's published examples; it never invents coordinates
+
+Totals now: **33 sources · 16 HOLD gates · runtime 11 jobs · pytest 15 passed · checks 44/44.**
+
 ## 📦 v1.3.0 — Package seats (10 of Darion's own tarballs)
 
 🗜️ Extracted and audited from source in `~/workspace/netx-sources/`, each merged as a real seat in `netx/packages.py`: **ML-x** (stdlib ML pipeline, real accuracy) · **slm** (sentence narrowing + bigram SLM) · **Deconstruction tarball** (the real 5-stage pipeline — upgrades the image seat, deduped) · **G-C-64-TPUs** (64-chip scheduler, labelled simulation) · **S3lf-c0n8ci0us** (state snapshot, no consciousness claimed) · **malware-sandbox-suite** (triage chamber — **never executes**) · **CyberSec-Directory** (institute directory + 7 domain checks) · **Globe-Data-Visualizer** (quadrant aggregation) · **Ppls voice** (cosine match on supplied vectors — no audio, no identification) · **LLM-x 0.1.5** (deduped into the one NetLab seat). Sources: **32** · Dedupe groups: **7** · Runtime jobs: **10** (wall 32.73 ms vs 302.32 ms serial = **9.2×**).
 
 ## 🎨 Script pictures
 
-🖼️ Every script has its own picture in `assets/` (dark navy, cyan + yellow neon set): `icon-main` (main.py) · `icon-catalog` · `icon-agents` · `icon-editor` · `icon-network` · `icon-towers` · `icon-internet` · `icon-shield` · `icon-news` · `icon-learn` · `icon-netlab` · `icon-engines` · `icon-brains` · `icon-gates` · `icon-runtime` · `icon-packages`. Binary images cannot travel through the GitHub App — they are the owner's upload step, same as repo cover images.
+🖼️ Every script has its own picture in `assets/` (dark navy, cyan + yellow neon set): `icon-main` (main.py) · `icon-catalog` · `icon-agents` · `icon-editor` · `icon-network` · `icon-towers` · `icon-internet` · `icon-shield` · `icon-news` · `icon-learn` · `icon-netlab` · `icon-engines` · `icon-brains` · `icon-gates` · `icon-runtime` · `icon-packages` · `icon-geo`. Binary images cannot travel through the GitHub App — they are the owner's upload step, same as repo cover images.
 
 ---
 

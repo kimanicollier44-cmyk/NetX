@@ -69,6 +69,9 @@ SOURCES = [
     {"name": "LLM-x 0.1.5 (tarball)", "kind": "own-tarball", "hub": "netlab",
      "unique": "Package form of the LLM-x architecture (34 files) - same family as LLM-X-NetLab repo, deduped into the one NetLab seat"},
     # Batch 3 - Darion's own repo, merged in full
+    # Batch 4 - article supplied by video + link (Darion, 2026-11-08)
+    {"name": "Apify guide: Google Maps API in Python", "kind": "article", "hub": "network",
+     "unique": "Geocoding (address -> lat/lng, get_lati_longi) + Distance Matrix driving distance/duration (get_dist_dur) + Static Maps next step, as a stdlib seat; live calls need the owner's GOOGLE_MAPS_API_KEY"},
     {"name": "credkellar/LLM-X-NetLab", "kind": "own-repo", "hub": "netlab",
      "unique": "LLM-x poster as code: RAG tutor over 21 networking notes, subnet/topology/layer/device engines, IP hopper-tracker-mapper START/MIDDLE/END + beyond-END walker, live sockets, Earth KML + Flow seats"},
 ]
@@ -116,5 +119,7 @@ def counts():
     own = sum(1 for s in SOURCES if s["kind"] == "own-image")
     repos = sum(1 for s in SOURCES if s["kind"] == "own-repo")
     tarballs = sum(1 for s in SOURCES if s["kind"] == "own-tarball")
+    articles = sum(1 for s in SOURCES if s["kind"] == "article")
     return {"sources": len(SOURCES), "apps": apps, "own_images": own,
-            "own_repos": repos, "own_tarballs": tarballs, "hubs": len(HUBS)}
+            "own_repos": repos, "own_tarballs": tarballs, "articles": articles,
+            "hubs": len(HUBS)}

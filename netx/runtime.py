@@ -14,6 +14,7 @@ from .learn import QUESTIONS, quiz
 from .netlab import tutor
 from .network import Device, summarize
 from .news import rank
+from .geo import GEOCODE_SAMPLE, parse_geocode
 from .packages import SEATS
 from .shield import smart_scan
 
@@ -41,6 +42,7 @@ def _hub_work():
         "netlab": lambda: tutor("what is dns")[0]["title"],
         "internet": lambda: profile_check(SAMPLE)["ptr_published"],
         "packages": lambda: len(SEATS),
+        "geo": lambda: parse_geocode(GEOCODE_SAMPLE),
         "council": lambda: council("run all hubs at once")["verdict"],
     }
 

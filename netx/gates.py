@@ -16,6 +16,7 @@ HOLD_GATES = [
     "home-profile-privacy: the owner's real ISP / public-IP / BSSID profile lives in private/ (gitignored) - it is never committed, pushed or published",
     "sandbox-never-executes: the sandbox-suite seat triages file metadata only - samples are never opened, run or detonated",
     "voice-no-identification: the Ppls seat matches abstract vectors the caller supplies - no audio capture, no identifying real people",
+    "geo-api-key: live Google Maps calls need the owner's GOOGLE_MAPS_API_KEY (environment only, never committed) - until then the geo seat parses supplied payloads and demos on the article's published examples",
 ]
 
 
