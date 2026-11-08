@@ -200,7 +200,7 @@ flowchart TD
 
 ### 🎛️ `main.py` — the one interface
 
-![icon-main](assets/icon-main.webp)
+![icon-main](icon-main.webp)
 
 ```mermaid
 flowchart TD
@@ -217,7 +217,7 @@ flowchart TD
 
 ### 📚 `netx/catalog.py` — the 33-source receipt book
 
-![icon-catalog](assets/icon-catalog.webp)
+![icon-catalog](icon-catalog.webp)
 
 ```mermaid
 flowchart LR
@@ -232,7 +232,7 @@ flowchart LR
 
 ### 🧑‍💻 `netx/agents.py` — Kilo agent board
 
-![icon-agents](assets/icon-agents.webp)
+![icon-agents](icon-agents.webp)
 
 ```mermaid
 flowchart LR
@@ -249,7 +249,7 @@ flowchart LR
 
 ### ✏️ `netx/editor.py` — QuickCode editor + Code runner
 
-![icon-editor](assets/icon-editor.webp)
+![icon-editor](icon-editor.webp)
 
 ```mermaid
 flowchart TD
@@ -263,7 +263,7 @@ flowchart TD
 
 ### 🌐 `netx/network.py` — Network Atlas inventory
 
-![icon-network](assets/icon-network.webp)
+![icon-network](icon-network.webp)
 
 ```mermaid
 flowchart TD
@@ -278,7 +278,7 @@ flowchart TD
 
 ### 📡 `netx/towers.py` — Cellular Tower finder
 
-![icon-towers](assets/icon-towers.webp)
+![icon-towers](icon-towers.webp)
 
 ```mermaid
 flowchart LR
@@ -290,7 +290,7 @@ flowchart LR
 
 ### 📶 `netx/internet.py` — Fing Internet seat
 
-![icon-internet](assets/icon-internet.webp)
+![icon-internet](icon-internet.webp)
 
 ```mermaid
 flowchart TD
@@ -304,7 +304,7 @@ flowchart TD
 
 ### 🛡️ `netx/shield.py` — Norton Smart Scan seat
 
-![icon-shield](assets/icon-shield.webp)
+![icon-shield](icon-shield.webp)
 
 ```mermaid
 flowchart LR
@@ -320,7 +320,7 @@ flowchart LR
 
 ### 📰 `netx/news.py` — Threat News Wire
 
-![icon-news](assets/icon-news.webp)
+![icon-news](icon-news.webp)
 
 ```mermaid
 flowchart TD
@@ -335,7 +335,7 @@ flowchart TD
 
 ### 🎓 `netx/learn.py` — Learn Hub
 
-![icon-learn](assets/icon-learn.webp)
+![icon-learn](icon-learn.webp)
 
 ```mermaid
 flowchart TD
@@ -348,7 +348,7 @@ flowchart TD
 
 ### 🔬 `netx/netlab.py` — LLM-X-NetLab seat
 
-![icon-netlab](assets/icon-netlab.webp)
+![icon-netlab](icon-netlab.webp)
 
 ```mermaid
 flowchart TD
@@ -363,7 +363,7 @@ flowchart TD
 
 ### ⚙️ `netx/engines.py` — his 3 Docker images as engines
 
-![icon-engines](assets/icon-engines.webp)
+![icon-engines](icon-engines.webp)
 
 ```mermaid
 flowchart TD
@@ -375,7 +375,7 @@ flowchart TD
 
 ### 🧠 `netx/brains.py` — the council
 
-![icon-brains](assets/icon-brains.webp)
+![icon-brains](icon-brains.webp)
 
 ```mermaid
 flowchart LR
@@ -389,7 +389,7 @@ flowchart LR
 
 ### 🔒 `netx/gates.py` — HOLD gates
 
-![icon-gates](assets/icon-gates.webp)
+![icon-gates](icon-gates.webp)
 
 ```mermaid
 flowchart TD
@@ -401,7 +401,7 @@ flowchart TD
 
 ### ⚡ `netx/runtime.py` — all running at the same time
 
-![icon-runtime](assets/icon-runtime.webp)
+![icon-runtime](icon-runtime.webp)
 
 ```mermaid
 flowchart TD
@@ -414,7 +414,7 @@ flowchart TD
 
 ### 📦 `netx/packages.py` — the 10 tarball seats
 
-![icon-packages](assets/icon-packages.webp)
+![icon-packages](icon-packages.webp)
 
 ```mermaid
 flowchart TD
@@ -433,7 +433,7 @@ flowchart TD
 
 ### 🗺️ `netx/geo.py` — Google Maps seat (Apify guide)
 
-![icon-geo](assets/icon-geo.webp)
+![icon-geo](icon-geo.webp)
 
 ```mermaid
 flowchart TD
@@ -498,7 +498,7 @@ Totals now: **33 sources · 16 HOLD gates · runtime 11 jobs · pytest 15 passed
 
 ## 🎨 Script pictures
 
-🖼️ Every script has its own picture in `assets/` (dark navy, cyan + yellow neon set): `icon-main` (main.py) · `icon-catalog` · `icon-agents` · `icon-editor` · `icon-network` · `icon-towers` · `icon-internet` · `icon-shield` · `icon-news` · `icon-learn` · `icon-netlab` · `icon-engines` · `icon-brains` · `icon-gates` · `icon-runtime` · `icon-packages` · `icon-geo`. Binary images cannot travel through the GitHub App — they are the owner's upload step, same as repo cover images.
+🖼️ Every script has its own picture at the repo root (dark navy, cyan + yellow neon set): `icon-main` (main.py) · `icon-catalog` · `icon-agents` · `icon-editor` · `icon-network` · `icon-towers` · `icon-internet` · `icon-shield` · `icon-news` · `icon-learn` · `icon-netlab` · `icon-engines` · `icon-brains` · `icon-gates` · `icon-runtime` · `icon-packages` · `icon-geo`. Binary images cannot travel through the GitHub App — they are the owner's upload step, same as repo cover images.
 
 ---
 
