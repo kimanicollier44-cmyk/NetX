@@ -1,0 +1,21 @@
+"""HOLD gates - actions NetX plans and labels, but never performs autonomously."""
+
+HOLD_GATES = [
+    "live-exploitation: no exploiting any system, ever - labs and learning only",
+    "foreign-network-scan: port scans only on networks the owner names as theirs",
+    "untrusted-code: code runs only as the owner's own snippets in the timed sandbox",
+    "agent-autonomy: agents never act without a human steering the session",
+    "router-changes: Tether seat reports only - no router settings are changed",
+    "vpn-traffic: Shield checks VPN presence - it does not route or log traffic",
+    "tower-location: tower distances use caller-supplied coordinates - no tracking",
+    "camera-accusation: a camera-like flag is a heuristic, never proof of a spy camera",
+    "news-publish: the wire ranks bundled/sample items - no live story is published as fact",
+    "exam-integrity: quiz answers stay local - no fetching live exam content",
+    "geo-lookup: no third-party geolocation of IPs the owner does not control",
+    "push-publish: NetX ships locally until Darion names a repo and says push",
+    "home-profile-privacy: the owner's real ISP / public-IP / BSSID profile lives in private/ (gitignored) - it is never committed, pushed or published",
+]
+
+
+def hold_demo():
+    return {"held": len(HOLD_GATES), "gates": HOLD_GATES, "exit_code": 2}
