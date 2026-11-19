@@ -1,3 +1,5 @@
+![NetX Cover](assets/cover.png)
+
 # 📱 NetX
 
 > 🧠 **Your agents, your code, your network, your security news and your cyber training — in one pocket system, all running at the same time.**
